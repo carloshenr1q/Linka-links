@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links do Projeto</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon">
+    <style>
+        * {
+            box-sizing: border-box; /* Garante que padding não aumente a largura dos elementos */
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            /* CORREÇÃO 1: min-height permite que o fundo cresça com o conteúdo */
+            min-height: 100vh; 
+            /* CORREÇÃO 2: Removido width: 100vw para evitar scroll horizontal */
+            overflow-x: hidden; 
+        }
+
+        div.pai {
+            display: flex;
+            justify-content: flex-start; /* Mudado para começar do topo */
+            flex-direction: column;
+            align-items: center;
+            min-height: 75vh;
+            padding: 40px 20px; /* Espaçamento interno para não colar nas bordas */
+            gap: 20px; /* Espaço entre os elementos filhos */
+        }
+
+        h1.title {
+            font-family: Arial, sans-serif;
+            font-size: 2.1em;
+            color: whitesmoke;
+            text-align: center;
+            margin: 0 0 20px 0;
+            /* CORREÇÃO 3: Removido o transform negativo que escondia o título */
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1200px;
+            width: 100%;
+            align-items: flex-start;
+        }
+
+        .box {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 350px;
+            padding: 10px;
+            padding-top: 6px;
+            text-align: center;
+            transition: transform 0.5s ease, box-shadow 0.3s ease-in;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .box:nth-child(1) { animation-delay: 0.2s; }
+        .box:nth-child(2) { animation-delay: 0.4s; }
+
+        .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .image {
+            width: 100%;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 12.5px 12.5px 3px 3px;
+            margin-bottom: 15px;
+            transition: transform 0.5s ease;
+        }
+
+        .box:hover .image {
+            transform: scale(1.04);
+        }
+
+        .title-card { /* Renomeado para evitar conflito com h1.title */
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+
+        .description {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 5px;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            max-height: 60px;
+            position: relative;
+        }
+
+        .description::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+            pointer-events: none;
+        }
+
+        .description.expanded {
+            max-height: 200px;
+        }
+
+        .description.expanded::after {
+            display: none;
+        }
+
+        .read-more {
+            color: #667eea;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: underline;
+            transition: color 0.3s ease;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .read-more:hover {
+            color: #764ba2;
+        }
+
+        .link {
+            display: inline-block;
+            background: #667eea;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .link:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .box {
+                width: 100%; /* Garante que a box não estoure a tela no mobile */
+                max-width: 350px;
+            }
+        }
+
+        footer {
+            /* CORREÇÃO 4: Removemos o transform. Usamos margin-top: auto para empurrar pro final */
+            margin-top: auto; 
+            gap: 15px;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            padding-top: 20px;
+        }
+        
+        footer > a > i {
+            color: white;
+            transition: all .5s ease;
+        }
+        
+        footer > a > i:hover {
+            color: #975cd3;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="pai">
+        <h1 class="title">Projeto Insitucional PromoUP 360</h1>
+        <div class="container">
+            <div class="box box1">
+                <div class="image" style="background-image: url('https://miro.medium.com/v2/resize:fit:1400/1*-Fi87ej3QneTFx3iBA6wTw.png');"></div>
+                <div class="title-card">Repositório</div>
+                <div class="description" id="desc1">
+                    Código-fonte completo da refatoração do site institucional da PromoUP. O projeto marca a migração de um código legado para uma arquitetura moderna em React 19 com Vite, utilizando Tailwind CSS para estilização e componentes reutilizáveis para alta performance.
+                </div>
+                <span class="read-more read-more1" onclick="toggleDescription(event, 'desc1')">Ler mais</span>
+                <a href="https://github.com/carloshenr1q/projeto-promoup-react" target="_blank" class="link">Acessar Projeto</a>
+            </div>
+            <div class="box box2">
+                <div class="image" style="background-image: url('https://ik.imagekit.io/qky4mu12kk/PromoUp/metatags/metatag.webp?updatedAt=1768955738637');"></div>
+                <div class="title-card">Site</div>
+                <div class="description" id="desc2">
+                    Acesse a versão live do site institucional da PromoUP, empresa referência em Live Marketing. O projeto entrega uma interface totalmente responsiva, com carrosséis interativos, integração direta com WhatsApp e navegação otimizada para apresentar serviços e cases de sucesso.
+                </div>
+                <span class="read-more read-more2" onclick="toggleDescription(event, 'desc2')">Ler mais</span>
+                <a href="https://promoup360.net/" target="_blank" class="link">Acessar Site</a>
+            </div>
+        </div>
+        <footer>
+            <a href="https://linkedin.com/in/dev-henrique" target="_blank">
+                <i class='bx bxl-linkedin-square bx-md' ></i>
+            </a>
+            <a href="https://github.com/carloshenr1q" target="_blank">
+                <i class='bx bxl-github bx-md' ></i>
+            </a>
+        </footer>
+    </div>
+    <script>
+        function toggleDescription(event, id) {
+            event.preventDefault();
+            const desc = document.getElementById(id);
+            desc.classList.toggle('expanded');
+            const readMore = event.target;
+            if (desc.classList.contains('expanded')) {
+                readMore.textContent = 'Ler menos';
+            } else {
+                readMore.textContent = 'Ler mais';
+            }
+        }
+    </script>
+</body>
+</html>
